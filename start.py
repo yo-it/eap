@@ -7,7 +7,10 @@ def main():
     while True:
         p = subprocess.Popen(['python', 'netattack2.py'], stdout=subprocess.PIPE)
         out, err = p.communicate()
-        time.sleep(100)
+        print out
+        print "Start : %s" % time.ctime()
+        time.sleep(120)
+        print "Start1 : %s" % time.ctime()
     
     
     
