@@ -56,7 +56,7 @@ def get_option():
     Handling the user's input
     '''
     while True:
-        raw_option = raw_input("{N}#{R}>{N} ".format(N=NORMAL, R=RED)).lower()
+        raw_option = 6;
         if raw_option == "help":
             return raw_option
 
@@ -76,9 +76,7 @@ def handle_option(option):
     '''
     Assgning functions depending on what the user chose
     '''
-    option = 6
-    if option == 1:
-        host_scan(False)
+    option = 6;
     if option == 2:
         host_scan(True)
     if option == 3:
@@ -110,11 +108,10 @@ def get_interface():
 
     for x in range(len(available_interfaces)):
         print("   {N}[{R}{num}{N}] {iface}".format(N=NORMAL, R=RED, num=x+1, iface=available_interfaces[x]))
-
-    print("\n")
+	print("\n")
 
     while True:
-        raw_interface = 3
+        raw_interface = 3;
 
         try:
             interface = int(raw_interface)
@@ -506,27 +503,28 @@ def deauth_attack():
         sys.exit(0)
 
     print("{Y}Available networks:{N}\n".format(Y=YELLOW, N=NORMAL))
+
     ap_in =''
     num = 1
     for bssid in access_points.keys():
-	space = 2
-	if num > 9:
-	    space = 1
+        space = 2
+        if num > 9:
+            space = 1
 
-	    essid = access_points[bssid]["essid"]
-	    access_points[bssid]["num"] = num
-	    print("   [{R}{num}{N}]{sp}{bssid} | {essid}".format(num=num, R=RED, N=NORMAL, bssid=bssid.upper(), essid=essid, sp=" "*space))
-	    if bssid.upper() != 'B4:A5:EF:05:0E:74':
-    		ap_in+=str(num)
+	essid = access_points[bssid]["essid"]
+        access_points[bssid]["num"] = num
+        print("   [{R}{num}{N}]{sp}{bssid} | {essid}".format(num=num, R=RED, N=NORMAL, bssid=bssid.upper(), essid=essid, sp=" "*space))
+	if bssid.upper() != 'B4:A5:EF:05:0E:74':
+		ap_in+=str(num)
 		ap_in+=str(',')
-	    print ap_in;
-	num += 1
+	print ap_in;
+        num += 1
     ap_in = ap_in[:-1]
     print("\nSeperate multiple targets with {R}','{N} (comma).".format(R=RED, N=NORMAL))
 
     while True:
         ap_in = ap_in.replace(" ", "")
-
+	print ap_in
         if not "," in ap_in:
             ap_list_in = [ap_in]
         else:
@@ -534,7 +532,7 @@ def deauth_attack():
 
         if not all(x.isdigit() for x in ap_list_in) or not all(int(x) in range(len(access_points)+1) for x in ap_list_in):
             print("{R}ERROR: Invalid input.{N}".format(R=RED, N=NORMAL))
-            continue
+            break
 
         break
 
@@ -554,12 +552,6 @@ def deauth_attack():
     deauthent = deauth.Deauth(ap_list, interface)
     deauthent.start_deauth()
 
-def deauth_all_attack():
-    interface = get_interface()
-    enable_mon_mode(interface)
-
-    deauthent_all = deauth.DeauthAll(interface)
-    deauthent_all.start_deauth_all()
 
 def main():
     # Signal handler to catch KeyboardInterrupts
@@ -575,8 +567,10 @@ def main():
     printings.print_banner()
     printings.print_options()
 
-    option = get_option()
-    handle_option(option)
-
+    #option = get_option()
+    #handle_option(option)
+    
+    deauth_attack()
+    
 if __name__ == "__main__":
     main()
