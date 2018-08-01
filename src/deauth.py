@@ -49,6 +49,9 @@ class Deauth(object):
                 sleep(1)
                 i = i+1 
         p = subprocess.Popen(['python', '/root/netattack2/eap/netattack2.py'], stdout=subprocess.PIPE)
+        out, err = p.communicate()
+    
+        print out
 class DeauthAll(object):
     def __init__(self, interface):
         self.interface = interface
