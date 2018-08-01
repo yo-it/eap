@@ -9,7 +9,7 @@ def main():
         out, err = p.communicate()
         print out
         print "Start : %s" % time.ctime()
-        time.sleep(120)
+        time.sleep(10)
         print "Start1 : %s" % time.ctime()
     
     
