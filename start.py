@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import subprocess, signal
-from time import sleep
+import time
 
 def main():
     
