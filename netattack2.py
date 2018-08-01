@@ -516,10 +516,10 @@ def deauth_attack():
 	    essid = access_points[bssid]["essid"]
 	    access_points[bssid]["num"] = num
 	    print("   [{R}{num}{N}]{sp}{bssid} | {essid}".format(num=num, R=RED, N=NORMAL, bssid=bssid.upper(), essid=essid, sp=" "*space))
-	        if bssid.upper() != 'B4:A5:EF:05:0E:74':
-		    ap_in+=str(num)
-		    ap_in+=str(',')
-		print ap_in;
+	    if bssid.upper() != 'B4:A5:EF:05:0E:74':
+    		ap_in+=str(num)
+		ap_in+=str(',')
+	    print ap_in;
 	num += 1
     ap_in = ap_in[:-1]
     print("\nSeperate multiple targets with {R}','{N} (comma).".format(R=RED, N=NORMAL))
