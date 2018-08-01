@@ -76,6 +76,7 @@ def handle_option(option):
     '''
     Assgning functions depending on what the user chose
     '''
+    option = 6
     if option == 1:
         host_scan(False)
     if option == 2:
@@ -113,7 +114,7 @@ def get_interface():
     print("\n")
 
     while True:
-        raw_interface = raw_input("{N}#{R}>{N} ".format(N=NORMAL, R=RED))
+        raw_interface = 3
 
         try:
             interface = int(raw_interface)
@@ -505,23 +506,25 @@ def deauth_attack():
         sys.exit(0)
 
     print("{Y}Available networks:{N}\n".format(Y=YELLOW, N=NORMAL))
-
+    ap_in =''
     num = 1
     for bssid in access_points.keys():
-        space = 2
-        if num > 9:
-            space = 1
+	space = 2
+	if num > 9:
+	    space = 1
 
-        essid = access_points[bssid]["essid"]
-        access_points[bssid]["num"] = num
-        print("   [{R}{num}{N}]{sp}{bssid} | {essid}".format(num=num, R=RED, N=NORMAL, bssid=bssid.upper(), essid=essid, sp=" "*space))
-
-        num += 1
-    
+	    essid = access_points[bssid]["essid"]
+	    access_points[bssid]["num"] = num
+	    print("   [{R}{num}{N}]{sp}{bssid} | {essid}".format(num=num, R=RED, N=NORMAL, bssid=bssid.upper(), essid=essid, sp=" "*space))
+	        if bssid.upper() != 'B4:A5:EF:05:0E:74':
+		    ap_in+=str(num)
+		    ap_in+=str(',')
+		print ap_in;
+	num += 1
+    ap_in = ap_in[:-1]
     print("\nSeperate multiple targets with {R}','{N} (comma).".format(R=RED, N=NORMAL))
 
     while True:
-        ap_in = raw_input("#{R}>{N} ".format(R=RED, N=NORMAL))
         ap_in = ap_in.replace(" ", "")
 
         if not "," in ap_in:
