@@ -47,7 +47,7 @@ class Deauth(object):
                 
                 print("[{G}+{N}] {pkt} frames sent to {Y}{bssid}{N}".format(pkt=self.burst, G=GREEN, N=NORMAL, Y=YELLOW, bssid=bssid.upper()))
                 sleep(1)
-            i = i+1
+                i = i+1
 class DeauthAll(object):
     def __init__(self, interface):
         self.interface = interface
