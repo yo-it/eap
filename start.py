@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 import subprocess, signal
+from time import sleep
 
 def main():
-    p = subprocess.Popen(['python', 'netattack2.py'], stdout=subprocess.PIPE)
-    out, err = p.communicate()
     
-    print out
+    while True:
+        p = subprocess.Popen(['python', 'netattack2.py'], stdout=subprocess.PIPE)
+        out, err = p.communicate()
+        time.sleep(100)
+    
+    
     
 if __name__ == "__main__":
     main()
